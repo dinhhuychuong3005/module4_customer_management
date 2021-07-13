@@ -25,5 +25,12 @@ public class CustomerController {
         modelAndView.addObject("customers", customers);
         return modelAndView;
     }
-
+    @PostMapping("/customers")
+    public ModelAndView updateCustomer(Customer customer) {
+        customerService.save(customer);
+        ModelAndView modelAndView = new ModelAndView("customers/list.jsp");
+        List<Customer> customers = customerService.findAll();
+        modelAndView.addObject("customers", customers);
+        return modelAndView;
+    }
 }
